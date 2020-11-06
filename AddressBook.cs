@@ -94,6 +94,26 @@ namespace AddressBookDataTable
             foreach (var contact in row)
                 Console.WriteLine(contact["firstName"] + " " + contact["lastName"] + " " + contact["address"] + " " + contact["city"] + " " + contact["state"] + " " + contact["zip"] + " " + contact["phoneNumber"] + " " + contact["email"]);
         }
+
+        public void GetSizeByState()
+        {
+            var Data = from contact in addressBook.AsEnumerable()
+                       group contact by contact["state"] into States
+                       select new { State = States.Key, Count = States.Count() };
+
+            foreach (var row in Data)
+                Console.WriteLine("State: " + row.State + " Count: " + row.Count);
+        }
+
+        public void GetSizeByCity()
+        {
+            var Data = from contact in addressBook.AsEnumerable()
+                       group contact by contact["city"] into City
+                       select new { City = City.Key, Count = City.Count() };
+
+            foreach (var row in Data)
+                Console.WriteLine("City: " + row.City + " Count: " + row.Count);
+        }
     }
 }
     

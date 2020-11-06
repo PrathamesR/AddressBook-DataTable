@@ -19,10 +19,13 @@ namespace AddressBookDataTable
             obj.EditContact();
             obj.DisplayAddressBook();
             obj.DeleteContact();
-            obj.DisplayAddressBook();
-            */
+            obj.DisplayAddressBook();           
             obj.GetRecordsByState();
             obj.GetRecordsByCity();
+            */
+            obj.GetSizeByState();
+            obj.GetSizeByCity();
+            
             Console.Read();
         }
     }
