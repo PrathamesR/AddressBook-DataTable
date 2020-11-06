@@ -41,16 +41,14 @@ namespace AddressBookDataTable
             Console.WriteLine("Enter value \n1.firstName \n2.lastName \n3.address \n4.city \n5.state \n6.zip \n7.phoneNumber \n8.email");
             int choice = int.Parse(Console.ReadLine());
             string[] properties = { "firstName", "lastName", "address", "city", "state", "zip", "phoneNumber", "email" };
+            
+            var row = (from contact in addressBook.AsEnumerable()
+                       where (string)contact["firstName"] == name
+                       select contact);
 
-            foreach (var row in addressBook.AsEnumerable())
-            {
-                if ((string)row[properties[0]] == name)
-                {
-                    Console.WriteLine("Enter new Value");
-                    Type type = row[properties[choice - 1]].GetType();
-                    row[properties[choice - 1]] = Convert.ChangeType(Console.ReadLine(),type);
-                }
-            }
+            Type type = row.First()[properties[choice - 1]].GetType();
+            row.First()[properties[choice - 1]] = Convert.ChangeType(Console.ReadLine(), type);
+
             Console.WriteLine("Edited contact successfully");
         }
     }
