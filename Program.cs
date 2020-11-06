@@ -28,6 +28,10 @@ namespace AddressBookDataTable
             obj.GetSizeByCity();
             obj.GetSortedRecordsByCity();
             obj.GetSortedRecordsByState();
+            obj.InsertNewContact("Abc", "Def", "Ghi", "Jkl", "Mno", 132456, 789456123, "abc@gmail.com","Friend");
+            obj.InsertNewContact("Abcsdf", "Def", "Ghi", "ew", "xcv", 489123, 789456123, "abc@gmail.com","Friend");
+            obj.InsertNewContact("sdfc", "sfdsd", "xcv", "sd", "zcxv", 756489, 789456123, "abc@gmail.com","Family");
+
             Console.Read();
         }
     }

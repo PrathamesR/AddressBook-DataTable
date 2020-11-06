@@ -22,7 +22,7 @@ namespace AddressBookDataTable
             addressBook.Columns.Add("phoneNumber", typeof(decimal));
             addressBook.Columns.Add("email", typeof(string));
         }
-        
+
         public void InsertNewContact(string firstname, string lastName, string address, string city, string state, decimal zip, decimal phoneNumber, string email)
         {
             addressBook.Rows.Add(firstname, lastName, address, city, state, zip, phoneNumber, email);
@@ -31,7 +31,7 @@ namespace AddressBookDataTable
         public void DisplayAddressBook()
         {
             foreach (var contact in addressBook.AsEnumerable())
-                Console.WriteLine(contact["firstName"] +" " + contact["lastName"] + " " + contact["address"] + " " + contact["city"] + " " + contact["state"] + " " + contact["zip"] + " " + contact["phoneNumber"] + " " + contact["email"]);
+                Console.WriteLine(contact["firstName"] + " " + contact["lastName"] + " " + contact["address"] + " " + contact["city"] + " " + contact["state"] + " " + contact["zip"] + " " + contact["phoneNumber"] + " " + contact["email"]);
         }
 
         public void EditContact()
@@ -41,7 +41,7 @@ namespace AddressBookDataTable
             Console.WriteLine("Enter value \n1.firstName \n2.lastName \n3.address \n4.city \n5.state \n6.zip \n7.phoneNumber \n8.email");
             int choice = int.Parse(Console.ReadLine());
             string[] properties = { "firstName", "lastName", "address", "city", "state", "zip", "phoneNumber", "email" };
-            
+
             var row = (from contact in addressBook.AsEnumerable()
                        where (string)contact["firstName"] == name
                        select contact);
@@ -63,7 +63,7 @@ namespace AddressBookDataTable
                       where (string)contact["firstName"] == name
                       select contact;
 
-            for(int i=0;i<row.AsEnumerable().Count();i++)
+            for (int i = 0; i < row.AsEnumerable().Count(); i++)
                 row.ElementAt(i).Delete();
 
             Console.WriteLine("Deleted contact successfully");
@@ -143,6 +143,19 @@ namespace AddressBookDataTable
             foreach (var contact in row)
                 Console.WriteLine(contact["firstName"] + " " + contact["lastName"] + " " + contact["address"] + " " + contact["city"] + " " + contact["state"] + " " + contact["zip"] + " " + contact["phoneNumber"] + " " + contact["email"]);
         }
+
+        public void AddNameandType()
+        {
+            Console.WriteLine("Enter Address Book Name: ");
+            addressBook.TableName = Console.ReadLine();
+
+            addressBook.Columns.Add("Type", typeof(string));
+            addressBook.Columns["Type"].DefaultValue = "NA";
+        }
+
+        public void InsertNewContact(string firstname, string lastName, string address, string city, string state, decimal zip, decimal phoneNumber, string email, string type)
+        {
+            addressBook.Rows.Add(firstname, lastName, address, city, state, zip, phoneNumber, email, type);
+        }
     }
-}
-    
+}    
