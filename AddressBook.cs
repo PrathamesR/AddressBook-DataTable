@@ -22,6 +22,17 @@ namespace AddressBookDataTable
             addressBook.Columns.Add("phoneNumber", typeof(decimal));
             addressBook.Columns.Add("email", typeof(string));
         }
+        
+        public void InsertNewContact(string firstname, string lastName, string address, string city, string state, decimal zip, decimal phoneNumber, string email)
+        {
+            addressBook.Rows.Add(firstname, lastName, address, city, state, zip, phoneNumber, email);
+        }
+
+        public void DisplayAddressBook()
+        {
+            foreach (var contact in addressBook.AsEnumerable())
+                Console.WriteLine(contact["firstName"] +" " + contact["lastName"] + " " + contact["address"] + " " + contact["city"] + " " + contact["state"] + " " + contact["zip"] + " " + contact["phoneNumber"] + " " + contact["email"]);
+        }
     }
 }
     
