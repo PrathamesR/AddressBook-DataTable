@@ -157,5 +157,15 @@ namespace AddressBookDataTable
         {
             addressBook.Rows.Add(firstname, lastName, address, city, state, zip, phoneNumber, email, type);
         }
+
+        public void GetCountByType()
+        {
+            var Data = from contact in addressBook.AsEnumerable()
+                       group contact by contact["Type"] into Type
+                       select new { Type = Type.Key, Count = Type.Count() };
+
+            foreach (var row in Data)
+                Console.WriteLine("City: " + row.Type + " Count: " + row.Count);
+        }
     }
 }    
