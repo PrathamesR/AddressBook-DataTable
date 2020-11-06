@@ -10,7 +10,8 @@ namespace AddressBookDataTable
     {
         static void Main(string[] args)
         {
-
+            AddressBook obj = new AddressBook();
+            obj.CreateAddressBook();
         }
     }
 }
