@@ -46,10 +46,27 @@ namespace AddressBookDataTable
                        where (string)contact["firstName"] == name
                        select contact);
 
+            Console.WriteLine("Enter new Value");
             Type type = row.First()[properties[choice - 1]].GetType();
             row.First()[properties[choice - 1]] = Convert.ChangeType(Console.ReadLine(), type);
 
             Console.WriteLine("Edited contact successfully");
+        }
+
+        public void DeleteContact()
+        {
+
+            Console.WriteLine("Enter First Name to delete: ");
+            string name = Console.ReadLine();
+
+            var row = from contact in addressBook.AsEnumerable()
+                      where (string)contact["firstName"] == name
+                      select contact;
+
+            for(int i=0;i<row.AsEnumerable().Count();i++)
+                row.ElementAt(i).Delete();
+
+            Console.WriteLine("Deleted contact successfully");
         }
     }
 }

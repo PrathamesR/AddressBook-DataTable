@@ -17,7 +17,9 @@ namespace AddressBookDataTable
             obj.DisplayAddressBook();
             obj.EditContact();
             obj.DisplayAddressBook();
-
+            obj.DeleteContact();
+            obj.DisplayAddressBook();
+            
             Console.Read();
         }
     }
