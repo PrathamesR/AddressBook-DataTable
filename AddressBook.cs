@@ -68,6 +68,32 @@ namespace AddressBookDataTable
 
             Console.WriteLine("Deleted contact successfully");
         }
+
+        public void GetRecordsByCity()
+        {
+            Console.WriteLine("Enter City: ");
+            string city = Console.ReadLine();
+
+            var row = from contact in addressBook.AsEnumerable()
+                      where (string)contact["city"] == city
+                      select contact;
+
+            foreach (var contact in row)
+                Console.WriteLine(contact["firstName"] + " " + contact["lastName"] + " " + contact["address"] + " " + contact["city"] + " " + contact["state"] + " " + contact["zip"] + " " + contact["phoneNumber"] + " " + contact["email"]);
+        }
+
+        public void GetRecordsByState()
+        {
+            Console.WriteLine("Enter State: ");
+            string state = Console.ReadLine();
+
+            var row = from contact in addressBook.AsEnumerable()
+                      where (string)contact["state"] == state
+                      select contact;
+
+            foreach (var contact in row)
+                Console.WriteLine(contact["firstName"] + " " + contact["lastName"] + " " + contact["address"] + " " + contact["city"] + " " + contact["state"] + " " + contact["zip"] + " " + contact["phoneNumber"] + " " + contact["email"]);
+        }
     }
 }
     
