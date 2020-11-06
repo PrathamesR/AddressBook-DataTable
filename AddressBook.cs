@@ -33,6 +33,26 @@ namespace AddressBookDataTable
             foreach (var contact in addressBook.AsEnumerable())
                 Console.WriteLine(contact["firstName"] +" " + contact["lastName"] + " " + contact["address"] + " " + contact["city"] + " " + contact["state"] + " " + contact["zip"] + " " + contact["phoneNumber"] + " " + contact["email"]);
         }
+
+        public void EditContact()
+        {
+            Console.WriteLine("Enter First Name to edit: ");
+            string name = Console.ReadLine();
+            Console.WriteLine("Enter value \n1.firstName \n2.lastName \n3.address \n4.city \n5.state \n6.zip \n7.phoneNumber \n8.email");
+            int choice = int.Parse(Console.ReadLine());
+            string[] properties = { "firstName", "lastName", "address", "city", "state", "zip", "phoneNumber", "email" };
+
+            foreach (var row in addressBook.AsEnumerable())
+            {
+                if ((string)row[properties[0]] == name)
+                {
+                    Console.WriteLine("Enter new Value");
+                    Type type = row[properties[choice - 1]].GetType();
+                    row[properties[choice - 1]] = Convert.ChangeType(Console.ReadLine(),type);
+                }
+            }
+            Console.WriteLine("Edited contact successfully");
+        }
     }
 }
     
