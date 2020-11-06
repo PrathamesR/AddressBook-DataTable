@@ -114,6 +114,35 @@ namespace AddressBookDataTable
             foreach (var row in Data)
                 Console.WriteLine("City: " + row.City + " Count: " + row.Count);
         }
+
+        public void GetSortedRecordsByCity()
+        {
+            Console.WriteLine("Enter City: ");
+            string city = Console.ReadLine();
+
+            var row = from contact in addressBook.AsEnumerable()
+                      where (string)contact["city"] == city
+                      orderby ((string)contact["firstName"] + (string)contact["lastName"])
+                      select contact;
+
+            foreach (var contact in row)
+                Console.WriteLine(contact["firstName"] + " " + contact["lastName"] + " " + contact["address"] + " " + contact["city"] + " " + contact["state"] + " " + contact["zip"] + " " + contact["phoneNumber"] + " " + contact["email"]);
+
+        }
+
+        public void GetSortedRecordsByState()
+        {
+            Console.WriteLine("Enter State: ");
+            string state = Console.ReadLine();
+
+            var row = from contact in addressBook.AsEnumerable()
+                      where (string)contact["state"] == state
+                      orderby ((string)contact["firstName"] + (string)contact["lastName"])
+                      select contact;
+
+            foreach (var contact in row)
+                Console.WriteLine(contact["firstName"] + " " + contact["lastName"] + " " + contact["address"] + " " + contact["city"] + " " + contact["state"] + " " + contact["zip"] + " " + contact["phoneNumber"] + " " + contact["email"]);
+        }
     }
 }
     
